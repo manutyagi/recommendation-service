@@ -9,7 +9,8 @@ import org.springframework.data.repository.query.Param;
 import com.stackroute.eplay.recommendationservice.domain.Movie;
 
 public interface MovieRepository extends Neo4jRepository<Movie, Integer> {
-//	@Query("MATCH (m:Movie) WHERE m.title ={title} RETURN m")
-	Movie findByTitleLike(@Param("title") String title);
-//	Movie findByTitle(@Param("title") String title);
+	
+//	Movie findByTitleLike(@Param("title") String title);
+	@Query("MATCH (m:Movie) WHERE m.title ={title} RETURN m")
+	Movie findByTitle(@Param("title") String title);
 }

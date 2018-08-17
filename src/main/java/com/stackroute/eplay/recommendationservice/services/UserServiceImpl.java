@@ -18,5 +18,10 @@ public class UserServiceImpl implements UserService {
 	public User saveUser(User user) {
 		return userrepository.save(user);		
 		
-	}	 
+	}
+
+//	public User getAllFollowers(String name) {
+//		// TODO Auto-generated method stub
+//		return (User) userrepository.findAll();
+//	}	 
 }

@@ -16,6 +16,12 @@ public class User {
 	private int age;
 	@Relationship(type = "VIEWED", direction = Relationship.OUTGOING)
 	private List<Movie> movies;
+	
+//	@Relationship(type="FOLLOWS",direction = Relationship.OUTGOING)
+//	private List<User> users;
+//	
+//	@Relationship(type="FOLLOWED_BY",direction = Relationship.INCOMING)
+//	private List<User> otherUsers;
 
 	public User() {
 		super();

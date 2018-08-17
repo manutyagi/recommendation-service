@@ -1,7 +1,9 @@
 package com.stackroute.eplay.recommendationservice.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,26 +41,21 @@ public class RecommendationServiceController {
 	}
 	
 	@PostMapping("/saveMovie")
-	public ResponseEntity<?> saveMovie(@RequestBody Movie movie) {
-		List<City> c = new ArrayList<City>();
-	    c.add(new City(4,"Mumbai"));
-	    c.add(new City(1,"Bangalore"));
-	    movie.setCities(c);
-	    Movie m = movieservice.saveMovie(movie);
-		return new ResponseEntity<Movie> (m,HttpStatus.OK);
+	public ResponseEntity<?> createMovieNode(@RequestBody Movie movie) {
+	    movie.setCities(movie.getCities());
+		return new ResponseEntity<Movie> (movieservice.saveMovie(movie),HttpStatus.OK);
 		
 	}
 	
-	@PostMapping("/saveUser")
-	public ResponseEntity<?> saveUser(@RequestBody User user){
-		List<Movie> m = new ArrayList<>();
-		m.add(new Movie(7,"Golmal","English",9.1));
-		user.setMovies(m);
+	@PostMapping("/saveUser")	
+	public ResponseEntity<?> createUserNode(@RequestBody User user){
+		user.setMovies(user.getMovies());
 		return new ResponseEntity<User>(userservice.saveUser(user),HttpStatus.OK);
 	}
 	
 	@PostMapping("/saveCity")
-	public ResponseEntity<?> saveCity(@RequestBody City city){
+	public ResponseEntity<?> createCityNode(@RequestBody City city){
+		city.setMovies(city.getMovies());
 		return new ResponseEntity<City>(cityservice.saveCity(city),HttpStatus.OK);
 	}
 	
@@ -66,5 +63,10 @@ public class RecommendationServiceController {
     public ResponseEntity <?> getMovieByTitle(@RequestParam String title) {
 			return new ResponseEntity<Movie> (movieservice.findByTitle(title),HttpStatus.OK);	
 	}
+	
+//	@PostMapping("/getAllFollowers/{name}")
+//	public ResponseEntity<?> getAllFollowers(@PathVariable String name){
+//		return new ResponseEntity<User>(userservice.getAllFollowers(name),HttpStatus.OK);
+//	}
 	
 }

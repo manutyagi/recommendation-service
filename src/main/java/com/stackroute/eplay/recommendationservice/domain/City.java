@@ -1,5 +1,6 @@
 package com.stackroute.eplay.recommendationservice.domain;
 
+import java.util.List;
 import java.util.Set;
 
 import org.neo4j.ogm.annotation.GeneratedValue;
@@ -14,7 +15,7 @@ public class City {
 	private int cityId;
 	private String cityName;
 	@Relationship(type="RELEASED_IN",direction=Relationship.INCOMING)
-	private Set<Movie> movies;
+	private List<Movie> movies;
 	
 	public City() {
 		super();
@@ -38,11 +39,11 @@ public class City {
 		this.cityName = cityName;
 	}
 	
-	public Set<Movie> getMovies() {
+	public List<Movie> getMovies() {
 		return movies;
 	}
 
-	public void setMovies(Set<Movie> movies) {
+	public void setMovies(List<Movie> movies) {
 		this.movies = movies;
 	}
 }

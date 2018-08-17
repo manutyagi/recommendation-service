@@ -21,7 +21,7 @@ public class MovieServiceImpl implements MovieService {
 	}
 	
 	public Movie findByTitle(String title) {
-		return movierepository.findByTitleLike(title);
+		return movierepository.findByTitle(title);
     }
 
 }
